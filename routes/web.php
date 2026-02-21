@@ -9,12 +9,16 @@ Route::get('/', function () {
 });
 
 // Rutas de autenticación
-Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login'); // Esta ruta faltaba
-Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/register', [AuthController::class, 'register'])->name('register');
+});
 
-// Ruta home (protegida)
-Route::post('/home', [HomeController::class, 'index'])->name('home');
+// Rutas protegidas (requieren autenticación)
+Route::middleware('auth')->group(function () {
+    // CAMBIADO: ahora es GET en lugar de POST
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
 
-// Ruta para logout
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
