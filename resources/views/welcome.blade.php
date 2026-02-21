@@ -168,10 +168,7 @@
                         <i class="fas fa-sign-in-alt"></i>
                         <span>Iniciar sesión</span>
                     </a>
-                    <a href="/registro" class="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:shadow-lg transition-all font-medium flex items-center gap-2">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Registrarse</span>
-                    </a>
+                    
                 </div>
 
                 <!-- Hamburguesa móvil -->
@@ -232,9 +229,7 @@
                 <a href="/login" class="block w-full px-4 py-3 text-center text-blue-600 border-2 border-blue-600 rounded-xl hover:bg-blue-50 transition-all font-medium">
                     <i class="fas fa-sign-in-alt mr-2"></i>Iniciar sesión
                 </a>
-                <a href="/registro" class="block w-full px-4 py-3 text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:shadow-lg transition-all font-medium">
-                    <i class="fas fa-user-plus mr-2"></i>Registrarse
-                </a>
+                
             </div>
 
             <!-- Redes sociales móvil -->
@@ -282,7 +277,7 @@
                             <span>Explorar catálogo</span>
                             <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </a>
-                        <a href="/registro" class="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                        <a href="/login" class="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
                             <i class="fas fa-user-plus"></i>
                             <span>Regístrate gratis</span>
                         </a>
