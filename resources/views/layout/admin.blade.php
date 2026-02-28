@@ -145,6 +145,17 @@
                 min-width: 600px;
             }
         }
+
+        /* Estilo para el contenido principal */
+        .main-content {
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        @media (min-width: 1024px) {
+            .main-content {
+                margin-left: 16rem; /* 64px = w-64 */
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -228,8 +239,8 @@
     <div id="overlay" class="sidebar-overlay"></div>
     
     <!-- Sidebar -->
-    <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 z-50 transform -translate-x-full lg:translate-x-0 transition-sidebar pt-16 lg:pt-20">
-        <div class="h-full flex flex-col">
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 z-50 transform -translate-x-full lg:translate-x-0 transition-sidebar">
+        <div class="h-full flex flex-col pt-16 lg:pt-20">
             <!-- Perfil móvil -->
             <div class="p-4 border-b border-gray-100 lg:hidden">
                 <div class="flex items-center gap-3">
@@ -255,6 +266,13 @@
                         <span class="font-medium">Inicio</span>
                     </a>
                     
+                    <a href="{{ route('categorias.index') }}" class="menu-item flex items-center gap-3 px-3 py-3 text-gray-700 rounded-xl hover:bg-gray-100 transition-all group">
+                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-green-600 group-hover:bg-green-600 group-hover:text-white transition-all">
+                            <i class="fas fa-tags text-sm"></i>
+                        </div>
+                        <span class="font-medium">Categorias</span>
+                    </a>
+
                     <a href="#" class="menu-item flex items-center gap-3 px-3 py-3 text-gray-700 rounded-xl hover:bg-gray-100 transition-all group">
                         <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-green-600 group-hover:bg-green-600 group-hover:text-white transition-all">
                             <i class="fas fa-book text-sm"></i>
@@ -301,8 +319,11 @@
         </div>
     </aside>
 
-    <!-- Aquí se inyecta el contenido de las vistas -->
-    @yield('content')
+    <!-- Contenido principal -->
+    <main class="main-content flex-1 pt-16 lg:pt-20">
+        <!-- Aquí se inyecta el contenido de las vistas -->
+        @yield('content')
+    </main>
 
     <!-- Footer -->
     @include('partials.admin.footer')
@@ -315,6 +336,7 @@
             const menuToggle = document.getElementById('menuToggle');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
+            const mainContent = document.querySelector('.main-content');
             
             if (menuToggle && sidebar && overlay) {
                 menuToggle.addEventListener('click', function() {
@@ -346,11 +368,25 @@
                         overlay?.classList.remove('active');
                         menuToggle?.classList.remove('open');
                         document.body.style.overflow = '';
+                        
+                        // En desktop, el main content tiene margen izquierdo
+                        if (mainContent) {
+                            mainContent.style.marginLeft = '16rem';
+                        }
                     } else {
                         sidebar?.classList.add('-translate-x-full');
+                        // En móvil, no hay margen izquierdo
+                        if (mainContent) {
+                            mainContent.style.marginLeft = '0';
+                        }
                     }
                 }, 250);
             });
+
+            // Inicializar estado
+            if (window.innerWidth >= 1024 && mainContent) {
+                mainContent.style.marginLeft = '16rem';
+            }
         })();
     </script>
 </body>
