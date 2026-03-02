@@ -11,8 +11,8 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $libros = Libro::paginate(5);
         // Obtener los libros para mostrarlos en la tabla
-        $libros = Libro::with('categoria')->latest()->take(5)->get(); // Últimos 5 libros
         
         // Estadísticas para las tarjetas
         $totalLibros = Libro::count();

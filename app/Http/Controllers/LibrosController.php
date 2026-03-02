@@ -29,12 +29,46 @@ class LibrosController extends Controller
         $libro->isbn = $request->isbn;
         $libro->autor = $request->autor;
         $libro->editorial = $request->editorial;
-        // CORRECCIÓN: El campo en la BD se llama 'id_categoria', no 'categoria_id'
         $libro->id_categoria = $request->categorias; 
-        // CORRECCIÓN: Agregar estatus (es obligatorio en tu BD)
-        $libro->estatus = 1; // 1 = activo, 0 = inactivo
+        $libro->estatus = 1; 
         $libro->save();
 
         return redirect()->route('home')->with('success', 'Libro creado exitosamente.');
+    }
+
+    public function edit($id)
+    {
+        $libro = Libro::findOrFail($id);
+        $categorias = Categorias::all();
+        return view('libros.edit', compact('libro', 'categorias'));
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'isbn' => 'required|string|max:100',
+            'autor' => 'required|string|max:255',
+            'editorial' => 'required|string|max:255',
+            'categoria_id' => 'required|exists:categorias,id', 
+        ]);
+
+        $libro = Libro::findOrFail($id);
+        $libro->nombre = $request->nombre;
+        $libro->isbn = $request->isbn;
+        $libro->autor = $request->autor;
+        $libro->editorial = $request->editorial;
+        $libro->id_categoria = $request->categoria_id; 
+        $libro->save();
+
+        return redirect()->route('home')->with('success', 'Libro actualizado exitosamente.');
+    }
+
+    public function destroy($id)
+    {
+        $libro = Libro::findOrFail($id);
+        $libro->delete();
+
+        return redirect()->route('home')->with('success', 'Libro eliminado exitosamente.');
     }
 }

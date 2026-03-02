@@ -265,6 +265,11 @@
             </div>
             
             <!-- Paginación simple -->
+
+      <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+            {{ $libros->links() }}
+        </div>
+            <!-- Paginación simple 
             @if(isset($libros) && count($libros) > 0)
             <div class="p-6 border-t border-gray-100 flex items-center justify-between">
                 <span class="text-sm text-gray-500">Mostrando {{ count($libros) }} de {{ $totalLibros ?? count($libros) }} libros</span>
@@ -272,7 +277,7 @@
                     <button class="px-4 py-2 text-sm border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-50" disabled>Anterior</button>
                     <button class="px-4 py-2 text-sm border border-gray-200 rounded-lg hover:bg-gray-50">Siguiente</button>
                 </div>
-            </div>
+            </div> -->
             @endif
         </div>
     </div>
