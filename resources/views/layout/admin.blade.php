@@ -200,7 +200,7 @@
                         <i class="fas fa-book text-lg"></i>
                         <span>Libros</span>
                     </a>
-                    <a href="#" class="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all flex items-center gap-2 font-medium">
+                    <a href="{{route ('prestamos.index')}}" class="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all flex items-center gap-2 font-medium">
                         <i class="fas fa-hand-holding text-lg"></i>
                         <span>Préstamos</span>
                     </a>

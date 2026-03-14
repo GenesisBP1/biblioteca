@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 250);
             $table->string('isbn', 100);
-            $table->integer('estatus');
+            $table->smallInteger('estatus')->default(0);
             $table->string('autor', 250);
             $table->string('editorial', 250);
             $table->unsignedBigInteger('id_categoria');
