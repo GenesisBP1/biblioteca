@@ -212,13 +212,13 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                @if($libro->estatus == 1)
-                                    <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs font-medium">
-                                        <i class="fas fa-check-circle mr-1"></i>Activo
+                                @if($libro->estatus == 0)
+                                <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs font-medium">
+                                        <i class="fas fa-check-circle mr-1"></i>Dsiponible
                                     </span>
                                 @else
-                                    <span class="px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-medium">
-                                        <i class="fas fa-times-circle mr-1"></i>Inactivo
+                                        <span class="px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-medium">
+                                        <i class="fas fa-times-circle mr-1"></i>Prestado
                                     </span>
                                 @endif
                             </td>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Libro;
 use App\Models\Prestamo;
+use Illuminate\Support\Facades\Redirect;
 
 class PrestamosController extends Controller
 {
@@ -46,7 +47,7 @@ class PrestamosController extends Controller
     {
         $usuario_id = $request->input('usuario_id');
         $usuario = User::findOrFail($usuario_id);
-        $libros = Libro::where('estatus',1)->orderBy('id','asc')->get();
+        $libros = Libro::where('estatus',0)->orderBy('id','asc')->get();
 
         return view('prestamos.select_libro', compact('usuario', 'libros'));
     }
@@ -81,4 +82,29 @@ class PrestamosController extends Controller
         return redirect()->route('prestamos.index')->with('success', 'Préstamo registrado exitosamente.');
     }
 
+    
+    public function entregar($id)
+    {
+        
+        \DB::beginTransaction();
+        try{
+            $prestamo = Prestamo::findOrFail($id);
+            $prestamo->estado = 'entregado';
+            $prestamo->fecha_entrega = now();
+            $prestamo->save();
+
+            $libro = Libro::findOrFail($prestamo->libro_id);
+            $libro->estatus = 0;
+            $libro->save();
+
+            \DB::commit();
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return redirect()->route('prestamos.index')->with('error', 'Error al registrar el préstamo. ');
+        }
+
+        return redirect()->route('prestamos.index')->with('success', 'Libro entregado exitosamente.');
+
+    }
+    
 }
