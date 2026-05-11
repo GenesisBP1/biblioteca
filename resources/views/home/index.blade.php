@@ -23,7 +23,7 @@
                 <div class="flex items-start justify-between">
                     <div>
                         <p class="text-sm text-gray-500 mb-1">Total Libros</p>
-                        <h3 class="text-2xl font-bold text-gray-800">{{ $totalLibros ?? '1,250' }}</h3>
+                        <h3 class="text-2xl font-bold text-gray-800">{{ $total_libros}}</h3>
                     </div>
                     <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
                         <i class="fas fa-book text-blue-600 text-xl"></i>
@@ -39,7 +39,7 @@
                 <div class="flex items-start justify-between">
                     <div>
                         <p class="text-sm text-gray-500 mb-1">Préstamos Activos</p>
-                        <h3 class="text-2xl font-bold text-gray-800">42</h3>
+                        <h3 class="text-2xl font-bold text-gray-800">{{$libros_pestados}}</h3>
                     </div>
                     <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
                         <i class="fas fa-hand-holding text-green-600 text-xl"></i>
@@ -55,7 +55,7 @@
                 <div class="flex items-start justify-between">
                     <div>
                         <p class="text-sm text-gray-500 mb-1">Usuarios Registrados</p>
-                        <h3 class="text-2xl font-bold text-gray-800">{{ $totalUsuarios ?? '328' }}</h3>
+                        <h3 class="text-2xl font-bold text-gray-800">{{ $total_usuarios }}</h3>
                     </div>
                     <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
                         <i class="fas fa-users text-purple-600 text-xl"></i>
@@ -71,7 +71,7 @@
                 <div class="flex items-start justify-between">
                     <div>
                         <p class="text-sm text-gray-500 mb-1">Devoluciones Pendientes</p>
-                        <h3 class="text-2xl font-bold text-gray-800">5</h3>
+                        <h3 class="text-2xl font-bold text-gray-800">{{$devoluciones_pendientes}}</h3>
                     </div>
                     <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
                         <i class="fas fa-clock text-red-600 text-xl"></i>

@@ -207,31 +207,31 @@
                 </nav>
                 
                 <!-- Perfil y logout -->
-                <div class="flex items-center gap-4">
-                    <button class="relative p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all">
-                        <i class="fas fa-bell text-lg"></i>
-                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white"></span>
-                    </button>
-                    
-                    <div class="flex items-center gap-3">
-                        <div class="text-right hidden sm:block">
-                            <p class="text-sm font-semibold text-gray-800">{{ Auth::user()->name ?? 'Usuario' }}</p>
-                            <p class="text-xs text-gray-500">Administrador</p>
-                        </div>
-                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-semibold shadow-md">
-                            {{ substr(Auth::user()->name ?? 'U', 0, 1) }}
-                        </div>
-                    </div>
-                    
-                    <form action="{{ route('logout') }}" method="POST" class="hidden lg:block">
-                        @csrf
-                        <button type="submit" class="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-all">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Salir</span>
-                        </button>
-                    </form>
+        <!-- Perfil y logout -->
+        <div class="flex items-center gap-4">
+            <button class="relative p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all">
+                <i class="fas fa-bell text-lg"></i>
+                <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white"></span>
+            </button>
+            
+            <!-- Enlace al perfil del usuario (envolviendo nombre y avatar) -->
+            <a href="{{ route('usuarios.profile') }}" class="flex items-center gap-3 group" title="Ver mi perfil">
+                <div class="text-right hidden sm:block">
+                    <p class="text-sm font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">{{ Auth::user()->name ?? 'Usuario' }}</p>
+                    <p class="text-xs text-gray-500">Administrador</p>
                 </div>
-            </div>
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-semibold shadow-md group-hover:shadow-lg transition-all">
+                    {{ substr(Auth::user()->name ?? 'U', 0, 1) }}
+                </div>
+            </a>
+            
+            <form action="{{ route('logout') }}" method="POST" class="hidden lg:block">
+                @csrf
+                <button type="submit" class="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-all">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Salir</span>
+                </button>
+            </form>
         </div>
     </header>
     

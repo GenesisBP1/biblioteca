@@ -21,9 +21,6 @@
                     <option value="{{ $libro->id }}">{{ $libro->nombre }} - {{ $libro->autor }}</option>
                 @endforeach
             </select>
-
-            
-
             <input type="hidden" name="usuario_id" value="{{ $usuario->id }}">
             
             <div class="flex items-center justify-between mt-4">
