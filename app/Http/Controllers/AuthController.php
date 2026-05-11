@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\UsuarioRegistrado;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -34,6 +36,8 @@ class AuthController extends Controller
         
         // Iniciar sesión automáticamente
         Auth::login($user);
+
+        Mail::to($user->email)->send(new UsuarioRegistrado($user));
         
         // Redirigir con mensaje de éxito
         return redirect()->route('home')->with('success', '¡Registro exitoso! Bienvenido.');
